@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en-us">
+   <head>
+      <title>Medtrack</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic" rel="stylesheet">
+      <!-- STYLESHEETS -->
+      <style type="text/css">
+         [fuse-cloak],
+         .fuse-cloak {
+         display: none !important;
+         }
+         .body {
+         letter-spacing: -0.1px !important;
+         }
+         .table_mt {
+         margin-top: -32px;
+         }
+         .switch {
+         position: relative;
+         display: inline-block;
+         width: 60px;
+         height: 34px;
+         }
+         .switch input {
+         display: none;
+         }
+         .slider {
+         position: absolute;
+         cursor: pointer;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         background-color: #ccc;
+         -webkit-transition: .4s;
+         transition: .4s;
+         }
+         .slider:before {
+         position: absolute;
+         content: "";
+         height: 15px;
+         width: 15px;
+         left: 0px;
+         bottom: 2px;
+         background-color: #03a9f4;
+         -webkit-transition: .4s;
+         transition: .4s;
+         }
+         input:checked + .slider {
+         background-color: rgba(3, 169, 244, 0.5);
+         }
+         input:focus + .slider {
+         box-shadow: 0 0 1px #2196F3;
+         }
+         input:checked + .slider:before {
+         -webkit-transform: translateX(26px);
+         -ms-transform: translateX(26px);
+         transform: translateX(26px);
+         }
+         /* Rounded sliders */
+         .slider.round {
+         border-radius: 34px;
+         }
+         .slider.round:before {
+         border-radius: 50%;
+         }
+         .table_td {
+         padding: 0.3rem 0.6rem !important;
+         }
+         .body_font {
+         font-size: 1.3rem !important;
+         line-height: 1.0rem !important;
+         }
+         .solid_border {
+         border: solid;
+         border-color: #03a9f4;
+         }
+         .container_css{
+         background-color: #e0dede;
+         border: solid;
+         border-color: #e0dede;
+         /* padding-left: 15px; */
+         margin-left: 15px;
+         margin-right: 15px;
+         }
+         .image_shadow{
+         border: 1px solid;
+         box-shadow: 3px -3px 3px -3px;
+         shadow-color: red;
+         /* margin-bottom: 12px; */
+         margin-top: 29px;
+         }
+         .panel-title{
+         font-size: 13px !important;
+         }
+         .panel-title:hover {
+         cursor: pointer;
+         }
+         .panel-heading .accordion-toggle:after {
+         /* symbol for "opening" panels */
+         font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+         content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+         float: right;        /* adjust as needed */
+         color: grey;         /* adjust as needed */
+         }
+         .panel-heading .accordion-toggle.collapsed:after {
+         /* symbol for "collapsed" panels */
+         content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+         }
+      </style>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <!-- Icons.css -->
+      <link type="text/css" rel="stylesheet" href="../assets/icons/fuse-icon-font/style.css">
+      <!-- Animate.css -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/animate.css/animate.min.css">
+      <!-- PNotify -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/pnotify/dist/PNotifyBrightTheme.css">
+      <!-- Nvd3 - D3 Charts -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/nvd3/build/nv.d3.min.css" />
+      <!-- Perfect Scrollbar -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />
+      <!-- Fuse Html -->
+      <link type="text/css" rel="stylesheet" href="../assets/fuse-html/fuse-html.min.css" />
+      <!-- Main CSS -->
+      <link type="text/css" rel="stylesheet" href="../assets/css/main.css">
+      <!-- / STYLESHEETS -->
+      <!-- JAVASCRIPT -->
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <!-- <script type="text/javascript" src="../assets/node_modules/jquery/dist/jquery.min.js"></script> -->
+      <!-- Mobile Detect -->
+      <script type="text/javascript" src="../assets/node_modules/mobile-detect/mobile-detect.min.js"></script>
+      <!-- Perfect Scrollbar -->
+      <script type="text/javascript" src="../assets/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+      <!-- Popper.js -->
+      <script type="text/javascript" src="../assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+      <!-- Bootstrap -->
+      <script type="text/javascript" src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+      <!-- Nvd3 - D3 Charts -->
+      <script type="text/javascript" src="../assets/node_modules/d3/d3.min.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/nvd3/build/nv.d3.min.js"></script>
+      <!-- Data tables -->
+      <script type="text/javascript" src="../assets/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/datatables-responsive/js/dataTables.responsive.js"></script>
+      <!-- PNotify -->
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotify.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyStyleMaterial.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyButtons.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyCallbacks.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyMobile.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyHistory.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyDesktop.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyConfirm.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyReference.js"></script>
+      <!-- Fuse Html -->
+      <script type="text/javascript" src="../assets/fuse-html/fuse-html.min.js"></script>
+      <!-- Main JS -->
+      <script type="text/javascript" src="../assets/js/main.js"></script>
+      <script type="text/javascript">
+         $( document ).ready(function() {
+             console.log();
+             $('.nav-link').bind('click',function(aa){
+                 // $('.nav-link')
+                 $('.nav-link').removeClass('active');
+                 $(this).addClass('active');
+                 console.log(this);
+             });
+         });
+      </script>
+      <script type="text/javascript">
+         $(function () {
+         
+             var active = true;
+         
+             $('#collapse-init').click(function () {
+                 if (active) {
+                     active = false;
+                      console.log("active",active);
+                     $('.panel-collapse').collapse('show');
+                     console.log($('.panel-collapse').collapse('show'));
+                     $('.panel-title').attr('data-toggle', '');
+                     $(this).text('Collapse All');
+                 } else {
+                     active = true;
+                     console.log("active",active);
+         
+                     $('.panel-collapse').collapse('hide');
+                     console.log( $('.panel-collapse').collapse('hide'));
+         
+         
+                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $(this).text('Expand All');
+                 }
+             });
+             
+             $('#accordion').on('show.bs.collapse', function () {
+                 if (active) $('#accordion .in').collapse('hide');
+             });
+         
+         });
+      </script>
+      <!-- / JAVASCRIPT -->
+   </head>
+   <body class="layout layout-vertical layout-left-navigation layout-above-toolbar layout-above-footer body_font">
+      <main>
+         <div id="wrapper">
+            <aside id="aside" class="aside aside-left" data-fuse-bar="aside" data-fuse-bar-media-step="md" data-fuse-bar-position="left">
+            <div class="aside-content bg-primary-700 text-auto">
+               <div class="aside-toolbar">
+                  <div class="logo">
+                     <img src="../assets/images/logos/medtrack_logo.png" width="32" height="32" class="logo-icon"></img>
+                     <span class="logo-text">MEDTRACK</span>
+                  </div>
+                  <button id="toggle-fold-aside-button" type="button" class="btn btn-icon d-none d-lg-block" data-fuse-aside-toggle-fold>
+                  <i class="icon icon-backburger"></i>
+                  </button>
+               </div>
+               <ul class="nav flex-column custom-scrollbar" id="sidenav" data-children=".nav-item">
+                  <li class="nav-item" role="tab" id="heading-dashboards">
+                     <a class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-dashboards" href="#" aria-expanded="false" aria-controls="collapse-dashboards" data-parent="#sidenav">
+                     <i class="icon s-4 icon-account"></i>
+                     <span>Users</span>
+                     </a>
+                     <ul id="collapse-dashboards" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="#heading-create-user"  data-url="heading-create-user">
+                           <span>Create User</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="#heading-user-detail" data-url="heading-user-detail" >
+                           <span>View User </span>
+                           </a>
+                        </li>
+                        <li class="nav-item "  >
+                           <a class="nav-link ripple c"  click="handleclick('c')" href="#heading-edit-user" >
+                           <span>Edit User </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple d"   click="handleclick('d')" href="#heading-user-list" >
+                           <span>List of Users</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+
+                  <li class="nav-item">
+                     <a class="nav-link ripple " href="#" data-url="#">
+                     <i class="icon s-4 icon-clipboard-text"></i>
+                     <span>Part/Documents</span>
+                     </a>
+                  </li>
+                    <li class="nav-item" role="tab" id="heading-department">
+                     <a class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-department" href="#" aria-expanded="false" aria-controls="collapse-department" data-parent="#sidenav">
+                     <i class="icon s-4 icon-layers"></i>
+                     <span>Department</span>
+                     </a>
+                     <ul id="collapse-department" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="#heading-create-user"  data-url="heading-create-user">
+                           <span>Create Department</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="#heading-user-detail" data-url="heading-user-detail" >
+                           <span>View Department </span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                  <li class="nav-item" role="tab" id="heading-tag">
+                     <a class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-tag" href="#" aria-expanded="false" aria-controls="collapse-tag" data-parent="#sidenav">
+                     <i class="icon s-4 icon-layers"></i>
+                     <span>Tags</span>
+                     </a>
+                     <ul id="collapse-tag" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="#heading-create-user"  data-url="heading-create-user">
+                           <span>Create Tag</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="#heading-user-detail" data-url="heading-user-detail" >
+                           <span>View Tag</span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link ripple " href="#" data-url="#">
+                     <i class="icon s-4 icon-account-box"></i>
+                     <span>Supplier</span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link ripple " href="#" data-url="#">
+                     <i class="icon s-4 icon-checkbox-marked"></i>
+                     <span>BOM</span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link ripple " href="#" data-url="#">
+                     <i class="icon s-4 icon-alarm-check"></i>
+                     <span>Mapping</span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link ripple " href="eco.html" data-url="eco.html">
+                     <i class="icon s-4 icon-oil"></i>
+                     <span>ECO</span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link ripple " href="#" data-url="#">
+                     <i class="icon s-4 icon-account"></i>
+                     <span>Where Used</span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </aside>
+         <div class="content-wrapper ">
+         <div class="content custom-scrollbar">
+         <div class="doc simple-table-doc page-layout simple full-width">
+            <!-- HEADER -->
+            <div class="page-header bg-primary text-auto p-6 row no-gutters align-items-center justify-content-between" style="margin-top: 0px;" >
+               <h1 class="doc-title h4" id="content" style="padding-right: 867px;"><i class="  icon-account mr-4"></i>Users
+               </h1>
+            </div>
+            <!-- / HEADER -->
+            <!-- /INTRO -->
+            <!-- INTRO -->
+            <div class="widget-content " style="margin: 56px 0px -67px 62px; ">
+              The system allow creates dynamic tag on create, edit part/ document including BOM.Tag modules allow admin create, edit, link tags.
+
+            </div>
+            <!-- /INTRO -->
+            <!-- DEMO -->
+            <!-- /DEMO -->
+            <!-- CREATE USER -->
+            <div class="page-content p-12 panel-title" id="heading-create-user" style="margin-top: 45px;">
+               <div class="panel-body control-accordion">
+                  <button id="collapse-init" class="btn btn-primary collapse_expand " style="background-color: #f57c00; float: right;     margin-top: -25px;">
+                  Expand All
+                  </button>
+                  <br/><br/>
+                  <div class="panel-group" id="accordion">
+                     <!-- First Panel -->
+                     <div class="panel panel-default " >
+                        <div class="panel-heading widget-content with-arrow" style="background-color: #dbd4d4;">
+                           <h6 class="panel-title widget-content accordion-toggle " id="heading-create-user" 
+                              data-toggle="collapse" 
+                              data-target="#collapseOne">
+                              Create User
+                           </h6>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                           <div class="example col-12 ">
+                              <span style="margin-top: 25px; ">
+                              1. Create new user navigate to 'New' from the user list.<br><br>
+                              1.a Admin clicks on 'User' ->  'New' </span>
+                              <div class="source-preview-wrapper image_shadow" >
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/users/create/newuser.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                              <span style="margin-top: 25px;">
+                              1.b Admin enters data on mandatory fields.<br><br>
+                              1.c The mandatory fields are first name, last name, designation, email, password, mobile, hire date, and department(s).<br><br>
+                              1.d Admin can add a new department by clicks on '++', type department name, press enter key. </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/users/create/adddepartment.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 ">
+                              <span style="margin-top: 25px; ">
+                              1.e Admin allocates department 'Quality Assurance', 'Operations', and 'Finance' to David </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/users/create/selectdepartment.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 ">
+                              <span style="margin-top: 25px; ">
+                              1.f Clicks on remove, 'Finance' wipes out from department list.</span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/users/create/removedepartment.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                              <span style="margin-top: 25px; ">
+                              1.g Admin clicks on 'Save'. The user 'David Villa' saved, and display on the user list.
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/users/create/saveuser.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Second Panel -->
+                     <div class="panel panel-default " >
+                        <div class="panel-heading widget-content" style="background-color: #dbd4d4;">
+                           <h4 class="panel-title accordion-toggle" id="heading-user-detail" 
+                              data-toggle="collapse" 
+                              data-target="#collapseTwo">
+                              View User
+                           </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                           <div class="example col-12 ">
+                              <span style="margin-top: 25px; ">
+                              2. View user details with ‘Notify User’, ‘Edit’, and ‘Back’ <br><br>2.a Admin clicks on ‘Notify User’, the system sent an email notification to 'David'.</span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/users/details/notifyuser.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                              <span style="margin-top: 25px; ">
+                              2.b Admin clicks on 'Edit', the system opens to edit user details of 'David'.   <br><br>
+                              2.c ‘Back’ moves to the user list</span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/users/details/editclick.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- Third Panel -->
+                     
+                     <!-- Fourth Panel -->
+                     
+                     <!-- /Fourth Panel -->
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div style="margin-left: 65px; margin-top: -65px;" >© 2018 lattice innovation</div>
+      </main>
+   </body>
+</html>

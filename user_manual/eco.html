@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <title>Medtrack</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic" rel="stylesheet">
+
+    <!-- STYLESHEETS -->
+    <style type="text/css">
+        [fuse-cloak],
+        .fuse-cloak {
+            display: none !important;
+        }
+        
+        .body {
+            letter-spacing: -0.1px !important;
+        }
+        
+        .table_mt {
+            margin-top: -32px;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        
+        .switch input {
+            display: none;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 15px;
+            width: 15px;
+            left: 0px;
+            bottom: 2px;
+            background-color: #03a9f4;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+        
+        input:checked + .slider {
+            background-color: rgba(3, 169, 244, 0.5);
+        }
+        
+        input:focus + .slider {
+            box-shadow: 0 0 1px #2196F3;
+        }
+        
+        input:checked + .slider:before {
+            -webkit-transform: translateX(26px);
+            -ms-transform: translateX(26px);
+            transform: translateX(26px);
+        }
+        /* Rounded sliders */
+        
+        .slider.round {
+            border-radius: 34px;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        
+        .table_td {
+            padding: 0.3rem 0.6rem !important;
+        }
+        
+        .body_font {
+            font-size: 1.3rem !important;
+            line-height: 1.0rem !important;
+        }
+        
+        .solid_border {
+            border: solid;
+            border-color: #03a9f4;
+        }
+
+        .container_css{
+                background-color: #e0dede;
+                border: solid;
+                border-color: #e0dede;
+                /* padding-left: 15px; */
+                margin-left: 15px;
+                margin-right: 15px;
+                    }
+        .image_shadow{
+                    border: 1px solid;
+                    box-shadow: 3px -3px 3px -3px;
+                    shadow-color: red;
+                    /* margin-bottom: 12px; */
+                    margin-top: 29px;
+        }
+    </style>
+
+    <!-- Icons.css -->
+    <link type="text/css" rel="stylesheet" href="../assets/icons/fuse-icon-font/style.css">
+    <!-- Animate.css -->
+    <link type="text/css" rel="stylesheet" href="../assets/node_modules/animate.css/animate.min.css">
+    <!-- PNotify -->
+    <link type="text/css" rel="stylesheet" href="../assets/node_modules/pnotify/dist/PNotifyBrightTheme.css">
+    <!-- Nvd3 - D3 Charts -->
+    <link type="text/css" rel="stylesheet" href="../assets/node_modules/nvd3/build/nv.d3.min.css" />
+    <!-- Perfect Scrollbar -->
+    <link type="text/css" rel="stylesheet" href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />
+    <!-- Fuse Html -->
+    <link type="text/css" rel="stylesheet" href="../assets/fuse-html/fuse-html.min.css" />
+    <!-- Main CSS -->
+    <link type="text/css" rel="stylesheet" href="../assets/css/main.css">
+    <!-- / STYLESHEETS -->
+
+    <!-- JAVASCRIPT -->
+    <!-- jQuery -->
+    <script type="text/javascript" src="../assets/node_modules/jquery/dist/jquery.min.js"></script>
+    <!-- Mobile Detect -->
+    <script type="text/javascript" src="../assets/node_modules/mobile-detect/mobile-detect.min.js"></script>
+    <!-- Perfect Scrollbar -->
+    <script type="text/javascript" src="../assets/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+    <!-- Popper.js -->
+    <script type="text/javascript" src="../assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+    <!-- Bootstrap -->
+    <script type="text/javascript" src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Nvd3 - D3 Charts -->
+    <script type="text/javascript" src="../assets/node_modules/d3/d3.min.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/nvd3/build/nv.d3.min.js"></script>
+    <!-- Data tables -->
+    <script type="text/javascript" src="../assets/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/datatables-responsive/js/dataTables.responsive.js"></script>
+    <!-- PNotify -->
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotify.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyStyleMaterial.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyButtons.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyCallbacks.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyMobile.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyHistory.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyDesktop.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyConfirm.js"></script>
+    <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyReference.js"></script>
+    <!-- Fuse Html -->
+    <script type="text/javascript" src="../assets/fuse-html/fuse-html.min.js"></script>
+    <!-- Main JS -->
+    <script type="text/javascript" src="../assets/js/main.js"></script>
+    <!-- / JAVASCRIPT -->
+</head>
+
+<body class="layout layout-vertical layout-left-navigation layout-above-toolbar layout-above-footer body_font">
+    <main>
+        <!-- <nav id="toolbar" class="bg-white">
+
+            <div class="row no-gutters align-items-center flex-nowrap">
+
+                <div class="col">
+
+                    <div class="row no-gutters align-items-center flex-nowrap">
+
+                        <button type="button" class="toggle-aside-button btn btn-icon d-block d-lg-none fuse-ripple-ready" data-fuse-bar-toggle="aside">
+                            <i class="icon icon-menu"></i>
+                        </button>
+
+                        <div class="toolbar-separator d-block d-lg-none"></div>
+
+                        <div class="shortcuts-wrapper row no-gutters align-items-center px-0 px-sm-2">
+
+                            <div class="add-shortcut-menu-button dropdown px-1 px-sm-3">
+
+                                <div class="dropdown-menu" aria-labelledby="dropdownShortcutMenu">
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="toolbar-separator" style="margin-right: 30px;"></div>
+
+                        <div style="padding-left: 205px;">The ‘User’ module allows to creates a new user, edit the user, view user details, and a list, the module is available only to
+                            <br>
+                            <br> DCA (Document Control Admin).</div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-auto">
+
+                    <div class="row no-gutters align-items-center justify-content-end">
+
+                        <div class="user-menu-button dropdown">
+
+                            <div class="dropdown-toggle ripple row align-items-center no-gutters px-2 px-sm-4" role="button" id="dropdownUserMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="avatar-wrapper">
+                                    <img class="avatar" src="../assets/images/avatars/profile.jpg">
+                                    <i class="status text-green icon-checkbox-marked-circle s-4"></i>
+                                </div>
+                                <span class="username mx-3 d-none d-md-block">Richard Scott</span>
+                            </div>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownUserMenu">
+                                <a class="dropdown-item" href="#">
+                                    <div class="row no-gutters align-items-center flex-nowrap">
+                                        <i class="icon-logout"></i>
+                                        <span class="px-3">Logout</span>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" href="#">
+                                    <div class="row no-gutters align-items-center flex-nowrap">
+                                        <i class="status text-green icon-checkbox-marked-circle"></i>
+                                        <span class="px-3">Change password</span>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </nav> -->
+        <div id="wrapper">
+            <aside id="aside" class="aside aside-left" data-fuse-bar="aside" data-fuse-bar-media-step="md" data-fuse-bar-position="left">
+                <div class="aside-content bg-primary-700 text-auto">
+
+                    <div class="aside-toolbar">
+
+                        <div class="logo">
+                            <img src="../assets/images/logos/medtrack_logo.png" width="32" height="32" class="logo-icon"></img>
+                            <span class="logo-text">MEDTRACK</span>
+                        </div>
+
+                        <button id="toggle-fold-aside-button" type="button" class="btn btn-icon d-none d-lg-block" data-fuse-aside-toggle-fold>
+                            <i class="icon icon-backburger"></i>
+                        </button>
+
+                    </div>
+
+                    <ul class="nav flex-column custom-scrollbar" id="sidenav" data-children=".nav-item">
+
+                        
+                        <li class="nav-item" role="tab" id="heading-dashboards">
+
+                            <a class="nav-link ripple with-arrow collapsed" data-toggle="collapse" data-target="#collapse-dashboards" href="index.html" aria-expanded="false" aria-controls="collapse-dashboards"> 
+                                <i class="icon s-4 icon-tile-four"></i>
+                               
+
+                                <span>Users</span>
+                                <!-- </a> -->
+                            </a>
+                            <ul id="collapse-dashboards" class='collapse show' role="tabpanel" aria-labelledby="heading-dashboards" data-children=".nav-item">
+
+                                <li class="nav-item">
+                                    <a class="nav-link ripple active" href="#heading-create-user" data-url="heading-create-user">
+
+                                        <span>Create User</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link ripple " href="eco.html" data-url="eco.html" >
+
+                                        <span>User Detail</span>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link ripple "  href="#heading-edit-user" >
+
+                                        <span>Edit user detail</span>
+                                    </a>
+                                </li>
+
+
+                                <li class="nav-item">
+                                    <a class="nav-link ripple "  href="#heading-user-list" >
+
+                                        <span>List of Users</span>
+                                    </a>
+                                </li>
+                                
+                                
+                               
+                               
+                             
+
+                            </ul>
+                        </li>
+
+
+
+                        
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="#" data-url="#">
+
+                                <i class="icon s-4 icon-clipboard-text"></i>
+
+                                <span>Part/Documents</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="#" data-url="#">
+
+                                <i class="icon s-4 icon-page-layout-sidebar-left"></i>
+
+                                <span>Departments</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="#" data-url="#">
+
+                                <i class="icon s-4 icon-tag"></i>
+
+                                <span>Tag</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="#" data-url="#">
+
+                                <i class="icon s-4 icon-account-box"></i>
+
+                                <span>Supplier</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="#" data-url="#">
+
+                                <i class="icon s-4 icon-checkbox-marked"></i>
+
+                                <span>BOM</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="#" data-url="#">
+
+                                <i class="icon s-4 icon-alarm-check"></i>
+
+                                <span>Mapping</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="eco.html" data-url="eco.html">
+
+                                <i class="icon s-4 icon-oil"></i>
+
+                                <span>ECO</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="#" data-url="#">
+
+                                <i class="icon s-4 icon-account"></i>
+
+                                <span>Where Used</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </aside>
+            <div class="content-wrapper ">
+                <div class="content custom-scrollbar">
+
+                    <div class="doc simple-table-doc page-layout simple full-width">
+
+                        <!-- HEADER -->
+                        <div class="page-header bg-primary text-auto p-6 row no-gutters align-items-center justify-content-between" style="margin-bottom: -40px;">
+                            <h1 class="doc-title h4" id="content">Users<br>
+                            </h1>
+
+                        </div>
+
+                        <!-- / HEADER -->
+                        <!-- CREATE USER -->
+                       
+                        <div class="page-content p-12" id="heading-create-user" style="margin-top: 45px;">
+                         <a class="nav-link ripple with-arrow collapsed container_css" data-toggle="collapse" data-target="#collapse-ecommerce" href="#" aria-expanded="false" aria-controls="collapse-ecommerce">
+
+                                <!-- <i class="icon s-4 icon-cart"></i> -->
+
+                                <span>1. Create new user navigate to 'New' from the user list.
+                        </span>
+                            </a>
+                            <div class="content container">
+                                <div class="row">
+
+                       
+                                <div class="col-12 " id="collapse-ecommerce" class='collapse ' role="tabpanel" aria-labelledby="heading-create-user" data-children=".nav-item">
+                                        <div class="example">
+                                            <div class="source-preview-wrapper">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    
+                                        <div class="example col-12 ">
+                                        <span style="margin-top: 25px; ">
+
+                                        1.a Admin clicks on 'User' ->  'New' </span>
+                                            <div class="source-preview-wrapper image_shadow" >
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <img src="../assets/images/module/users/create/newuser.png" alt="image" style="max-width:100%;">
+                                                    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                         <div class="example col-12 " >
+                                         <span style="margin-top: 25px;">1.b The mandatory fields are first name, last name, designation, email, password, mobile, hire date, and department(s).</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <img src="../assets/images/module/users/create/createuserform.png" alt="image" style="max-width:100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="example col-12 " ><span style="margin-top: 25px; ">
+                                         1.c Admin enters data on mandatory fields.</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <img src="../assets/images/module/users/create/userdetails.png" alt="image" style="max-width:100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                          <div class="example col-12 " ><span style="margin-top: 25px;">
+                                        1.d Admin can add a new department by clicks on '++', type department name, press enter key. </span>
+
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                   <img src="../assets/images/module/users/create/adddepartment.png" alt="image" style="max-width:100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="example col-12 ">
+                                        <span style="margin-top: 25px; ">
+
+                                        1.e Admin allocates 'Quality Control', 'Administration', 'Manufacturing', and 'Finance' to David </span>
+
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <img src="../assets/images/module/users/create/selectdepartment.png" alt="image" style="max-width:100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="example col-12 ">
+                                        <span style="margin-top: 25px; ">
+                                        1.f Clicks on remove, 'Finance' wipes out from allocated user department list.</span>
+
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <img src="../assets/images/module/users/create/removedepartment.png" alt="image" style="max-width:100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         <div class="example col-12 " >
+                                         <span style="margin-top: 25px; ">
+                                        1.g Clicks on 'Save'
+                                         </span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <img src="../assets/images/module/users/create/saveuser.png" alt="image" style="max-width:100%;">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                 </div>
+                              </div>
+                               </div>
+                                     </div>
+
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- /CREATE USER -->
+                        <!-- USER DETAILs -->
+
+                        <div class="page-content p-12" id="heading-user-detail" style="margin-top: -85px;">
+                         <a class="nav-link ripple with-arrow collapsed container_css" data-toggle="collapse" data-target="#collapse-ecommerce1" href="#" aria-expanded="false" aria-controls="collapse-ecommerce1">
+
+                                <!-- <i class="icon s-4 icon-cart"></i> -->
+
+                                <span>2.) View user details with ‘Notify’ and ‘Edit’ </span>
+                            </a>
+                            <div class="content container">
+                                <div class="row">
+
+                       
+                                <div class="col-12 " id="collapse-ecommerce1" class='collapse ' role="tabpanel" aria-labelledby="heading-create-user" data-children=".nav-item">
+                                        <div class="example">
+                                            <div class="source-preview-wrapper ">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    
+                                        <div class="example col-12 ">
+                                        <span style="margin-top: 25px; margin-left: 25px;">2.a clicks on ‘Notify’ .</span>
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank" rel="noopener noreferrer" href="../assets/images/module/users/details/notifyuser.png"><img src="../assets/images/module/users/details/notifyuser.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                         <div class="example col-12 " >
+                                         <span style="margin-top: 25px; margin-left: 25px;">
+                                         2.b success message ‘Notify’.</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank"  href="../assets/images/module/users/details/successmessage.png"><img src="../assets/images/module/users/details/successmessage.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="example col-12 " ><span style="margin-top: 25px; margin-left: 25px;">
+                                          2.c clicks on ‘Edit’.</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank" rel="noopener noreferrer" href="../assets/images/module/users/details/editclick.png"><img src="../assets/images/module/users/details/editclick.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         
+                                        
+                                 </div>
+                              </div>
+                               </div>
+                                     </div>
+
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /USER DETAILS -->
+
+                        <!-- EDIT USER DETAIL -->
+
+                        <div class="page-content p-12" id="heading-edit-user" style="margin-top: -85px;">
+                         <a class="nav-link ripple with-arrow collapsed container_css" data-toggle="collapse" data-target="#collapse-ecommerce2" href="#" aria-expanded="false" aria-controls="collapse-ecommerce2">
+
+                                <!-- <i class="icon s-4 icon-cart"></i> -->
+
+                                <span>3.) Edit user details with ‘Save’ and ‘Back’ 
+ </span>
+                            </a>
+                            <div class="content container">
+                                <div class="row">
+
+                       
+                                <div class="col-12 " id="collapse-ecommerce2" class='collapse ' role="tabpanel" aria-labelledby="heading-create-user" data-children=".nav-item">
+                                        <div class="example">
+                                            <div class="source-preview-wrapper">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    
+                                        <div class="example col-12 ">
+                                        <span style="margin-top: 25px; margin-left: 25px;">3.a change mobile # and clicks  on save.</span>
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank" rel="noopener noreferrer" href="../assets/images/module/users/edit/mobilenoeditsave.png"><img src="../assets/images/module/users/edit/mobilenoeditsave.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                         <div class="example col-12 " >
+                                         <span style="margin-top: 25px; margin-left: 25px;">
+                                         3.b view user details.</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank"  href="../assets/images/module/users/edit/viewuserdetails.png"><img src="../assets/images/module/users/edit/viewuserdetails.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="example col-12 " ><span style="margin-top: 25px; margin-left: 25px;">
+                                         3.c reset password and clicks  on save.</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank" rel="noopener noreferrer" href="../assets/images/module/users/edit/resetpassword.png"><img src="../assets/images/module/users/edit/resetpassword.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         <div class="example col-12 " >
+                                         <span style="margin-top: 25px; margin-left: 25px;">
+                                        3.d view user details.</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank"  href="../assets/images/module/users/edit/viewuserdetails.png"><img src="../assets/images/module/users/edit/viewuserdetails.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                         <div class="example col-12 " >
+                                         <span style="margin-top: 25px; margin-left: 25px;">
+                                         3.d system does not allow to remove all department of an user</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank"  href="../assets/images/module/users/edit/savedisable.png"><img src="../assets/images/module/users/edit/savedisable.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+
+                                         
+                                        
+                                 </div>
+                              </div>
+                               </div>
+                                     </div>
+
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /EDIT USER DETAIL -->
+
+
+                          <!-- USER LIST -->
+
+                        <div class="page-content p-12" id="heading-user-list" style="margin-top: -85px;">
+                         <a class="nav-link ripple with-arrow collapsed container_css" data-toggle="collapse" data-target="#collapse-ecommerce3" href="#" aria-expanded="false" aria-controls="collapse-ecommerce3">
+
+                                
+
+                                <span>4.) Admin views ‘User list’
+ </span>
+                            </a>
+                            <div class="content container">
+                                <div class="row">
+
+                       
+                                <div class="col-12 " id="collapse-ecommerce3" class='collapse ' role="tabpanel" aria-labelledby="heading-create-user" data-children=".nav-item">
+                                        <div class="example">
+                                            <div class="source-preview-wrapper">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    
+                                        <div class="example col-12 ">
+                                        <span style="margin-top: 25px; margin-left: 25px;">4.a user list.</span>
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank" rel="noopener noreferrer" href="../assets/images/module/users/list/userlist.png"><img src="../assets/images/module/users/list/userlist.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                         <div class="example col-12 " >
+                                         <span style="margin-top: 25px; margin-left: 25px;">
+                                         4.b Types ‘John’, clicks on search and sort with active status.</span>
+
+                                                    
+                                        
+                                            <div class="source-preview-wrapper image_shadow">
+                                                <div class="preview">
+                                                    <div class="preview-elements">
+                                                    
+
+                                                    <a target="_blank"  href="../assets/images/module/users/list/searchsort.png"><img src="../assets/images/module/users/list/searchsort.png" alt="image" style="max-width:100%;"></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                 </div>
+                              </div>
+                               </div>
+                                     </div>
+
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /USER LIST -->
+
+                    
+                     
+                      
+
+                        
+                        <div style="margin-left: 65px; margin-top: -65px;" >© 2018 lattice innovation</div>
+
+                    </div>
+
+ 
+                </div>
+
+            </div>
+
+    </main>
+    
+</body>
+
+
+</html>
