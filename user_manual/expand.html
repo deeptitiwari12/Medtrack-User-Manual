@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en-us">
+   <head>
+      <title>Medtrack</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic" rel="stylesheet">
+      <!-- STYLESHEETS -->
+      <style type="text/css">
+         [fuse-cloak],
+         .fuse-cloak {
+         display: none !important;
+         }
+         .body {
+         letter-spacing: -0.1px !important;
+         }
+         .table_mt {
+         margin-top: -32px;
+         }
+         
+         .table_td {
+         padding: 0.3rem 0.6rem !important;
+         }
+         .body_font {
+         font-size: 1.3rem !important;
+         line-height: 1.0rem !important;
+         }
+         .solid_border {
+         border: solid;
+         border-color: #03a9f4;
+         }
+         .container_css{
+         background-color: #e0dede;
+         border: solid;
+         border-color: #e0dede;
+         /* padding-left: 15px; */
+         margin-left: 15px;
+         margin-right: 15px;
+         }
+         .image_shadow{
+         border: 1px solid;
+         box-shadow: 3px -3px 3px -3px;
+         shadow-color: red;
+         /* margin-bottom: 12px; */
+         margin-top: 29px;
+         }
+         .panel-title{
+         font-size: 13px !important;
+         }
+         .panel-title:hover {
+         cursor: pointer;
+         }
+         .panel-heading .accordion-toggle:after {
+         /* symbol for "opening" panels */
+         font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+         content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+         float: right;        /* adjust as needed */
+         color: grey;         /* adjust as needed */
+         }
+         .panel-heading .accordion-toggle.collapsed:after {
+         /* symbol for "collapsed" panels */
+         content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+         }
+         .a {
+             color: #ffffff !important; 
+              text-decoration: none !important; 
+            
+         }
+         body {
+  color: #6a6c6f;
+  background-color: #f1f3f6;
+  margin-top: 30px;
+}
+
+.container {
+  max-width: 960px;
+}
+
+.panel-default>.panel-heading {
+  color: #333;
+  background-color: #fff;
+  border-color: #e4e5e7;
+  padding: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.panel-default>.panel-heading a {
+  display: block;
+  padding: 10px 15px;
+}
+
+.panel-default>.panel-heading a:after {
+  content: "";
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  float: right;
+  transition: transform .25s linear;
+  -webkit-transition: -webkit-transform .25s linear;
+}
+
+.panel-default>.panel-heading a[aria-expanded="true"] {
+  background-color: #eee;
+}
+
+.panel-default>.panel-heading a[aria-expanded="true"]:after {
+  content: "\2212";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.panel-default>.panel-heading a[aria-expanded="false"]:after {
+  content: "\002b";
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.accordion-option {
+  width: 100%;
+  float: left;
+  clear: both;
+  margin: 15px 0;
+}
+
+.accordion-option .title {
+  font-size: 20px;
+  font-weight: bold;
+  float: left;
+  padding: 0;
+  margin: 0;
+}
+
+.accordion-option .toggle-accordion {
+  float: right;
+  font-size: 16px;
+  color: #6a6c6f;
+}
+
+.accordion-option .toggle-accordion:before {
+  content: "Expand All";
+}
+
+.accordion-option .toggle-accordion.active:before {
+  content: "Collapse All";
+}
+      </style>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <!-- Icons.css -->
+      <link type="text/css" rel="stylesheet" href="../assets/icons/fuse-icon-font/style.css">
+      <!-- Animate.css -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/animate.css/animate.min.css">
+      <!-- PNotify -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/pnotify/dist/PNotifyBrightTheme.css">
+      <!-- Nvd3 - D3 Charts -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/nvd3/build/nv.d3.min.css" />
+      <!-- Perfect Scrollbar -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />
+      <!-- Fuse Html -->
+      <link type="text/css" rel="stylesheet" href="../assets/fuse-html/fuse-html.min.css" />
+      <!-- Main CSS -->
+      <link type="text/css" rel="stylesheet" href="../assets/css/main.css">
+      <!-- / STYLESHEETS -->
+      <!-- JAVASCRIPT -->
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <!-- <script type="text/javascript" src="../assets/node_modules/jquery/dist/jquery.min.js"></script> -->
+      <!-- Mobile Detect -->
+      <script type="text/javascript" src="../assets/node_modules/mobile-detect/mobile-detect.min.js"></script>
+      <!-- Perfect Scrollbar -->
+      <script type="text/javascript" src="../assets/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+      <!-- Popper.js -->
+      <script type="text/javascript" src="../assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+      <!-- Bootstrap -->
+      <script type="text/javascript" src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+      <!-- Nvd3 - D3 Charts -->
+      <script type="text/javascript" src="../assets/node_modules/d3/d3.min.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/nvd3/build/nv.d3.min.js"></script>
+      <!-- Data tables -->
+      <script type="text/javascript" src="../assets/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/datatables-responsive/js/dataTables.responsive.js"></script>
+      <!-- PNotify -->
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotify.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyStyleMaterial.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyButtons.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyCallbacks.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyMobile.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyHistory.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyDesktop.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyConfirm.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyReference.js"></script>
+      <!-- Fuse Html -->
+      <script type="text/javascript" src="../assets/fuse-html/fuse-html.min.js"></script>
+      <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+      <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      <!-- Main JS -->
+      <script type="text/javascript" src="../assets/js/main.js"></script>
+      <script type="text/javascript">
+         $( document ).ready(function() {
+             console.log();
+            
+         });
+      </script>
+
+<!--  -->
+      <script type="text/javascript">
+        $(document).ready(function() {
+        $(".toggle-accordion").on("click", function() {
+          var accordionId = $(this).attr("accordion-id"),
+            numPanelOpen = $(accordionId + ' .collapse.in').length;   
+              
+          $(this).toggleClass("active");
+
+          if (numPanelOpen == 0) {
+            openAllPanels(accordionId);
+          } else {
+            closeAllPanels(accordionId);
+          }
+        })
+        openAllPanels = function(aId) {
+          console.log("setAllPanelOpen");
+          $(aId + ' .panel-collapse:not(".in")').collapse('show');
+        }
+        closeAllPanels = function(aId) {
+          console.log("setAllPanelclose");
+          $(aId + ' .panel-collapse.in').collapse('hide');
+        }
+           
+      });
+      </script>
+      <!-- / JAVASCRIPT -->
+   </head>
+   <body class="layout layout-vertical layout-left-navigation layout-above-toolbar layout-above-footer body_font">
+      <main>
+         <div id="wrapper">
+
+         <div class="content-wrapper ">
+         <div class="content custom-scrollbar">
+         <div class="doc simple-table-doc page-layout simple full-width">
+            <!-- HEADER -->
+            <div class="page-header bg-primary text-auto p-6 Sep" style="margin-top: 0px">
+               <!-- HEADER CONTENT-->
+               <div class="header-content d-flex flex-column justify-content-between">
+                  <!-- HEADER TOP -->
+                  <div class="header-top d-flex flex-column flex-sm-row align-items-center  justify-content-center justify-content-sm-between">
+                     <div class="logo row align-items-center no-gutters mb-4 mb-sm-0">
+                        <i class="  icon-account-box mr-4" style="margin-top: 8px;"></i>
+                        <span class="logo-text mr-4 h4">User</span>
+                     </div>
+                     <!-- TOOLBAR -->
+                     <div class="toolbar row no-gutters align-items-center">
+                     </div>
+                     <!-- / TOOLBAR -->
+                  </div>
+                  <!-- / HEADER TOP -->
+               </div>
+            </div>
+
+
+           
+           
+
+            <!--USER -->
+            <div class="page-content p-12 panel-title" id="heading-create-user" style="margin-top: 45px;">
+           
+                  <div class="panel-group" id="accordion">
+                     <!-- First Panel -->
+                  <div class="container">
+  <div class="accordion-option">
+    <h3 class="title">Lorem Ipsum</h3>
+    <a href="javascript:void(0)" class="toggle-accordion active" accordion-id="#accordion"></a>
+  </div>
+  <div class="clearfix"></div>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingOne">
+        <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Collapsible Group Item #1
+        </a>
+      </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+        <div class="panel-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+          on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
+          raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingTwo">
+        <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          Collapsible Group Item #2
+        </a>
+      </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="panel-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+          on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
+          raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="headingThree">
+        <h4 class="panel-title">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          Collapsible Group Item #3
+        </a>
+      </h4>
+      </div>
+      <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird
+          on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table,
+          raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+                     <!-- Second Panel -->
+                    
+                     <!-- Third Panel -->
+                     
+                     <!-- Fourth Panel -->
+                   
+                     <!-- /Fourth Panel -->
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div style="margin-left: 65px; margin-top: -65px;" >© 2018 lattice innovation</div>
+      </main>
+   </body>
+</html>

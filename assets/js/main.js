@@ -88,6 +88,26 @@
         {
             $(this).parents('.example').toggleClass('show-source');
         });
+
+         $('.nav-link').bind('click',function(aa){
+                 // $('.nav-link')
+                 $('.nav-link').removeClass('active');
+                 $(this).addClass('active');
+                 console.log(this);
+             });
+
+                // var currentUrl = window.location.href;
+
+              $('span.nav-link').bind('click',function(aa){
+                 if (window.location.href.indexOf($(this).find('a').first().attr('href')) > -1) {
+                 }else{
+                 $(this).find('a:first')[0].click();
+                 }
+             });
+
+
+
+
     });
 
     /**

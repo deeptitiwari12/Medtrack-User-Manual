@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en-us">
+   <head>
+      <title>Medtrack</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+      <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700italic,700,900,900italic" rel="stylesheet">
+      <!-- STYLESHEETS -->
+      <style type="text/css">
+         [fuse-cloak],
+         .fuse-cloak {
+         display: none !important;
+         }
+         .body {
+         letter-spacing: -0.1px !important;
+         }
+         .table_mt {
+         margin-top: -32px;
+         }
+         
+         .table_td {
+         padding: 0.3rem 0.6rem !important;
+         }
+         .body_font {
+         font-size: 1.3rem !important;
+         line-height: 1.0rem !important;
+         }
+         .solid_border {
+         border: solid;
+         border-color: #03a9f4;
+         }
+         .container_css{
+         background-color: #e0dede;
+         border: solid;
+         border-color: #e0dede;
+         /* padding-left: 15px; */
+         margin-left: 15px;
+         margin-right: 15px;
+         }
+         .image_shadow{
+         border: 1px solid;
+         box-shadow: 3px -3px 3px -3px;
+         shadow-color: red;
+         /* margin-bottom: 12px; */
+         margin-top: 29px;
+         }
+         .panel-title{
+         font-size: 13px !important;
+         }
+         .panel-title:hover {
+         cursor: pointer;
+         }
+         .panel-heading .accordion-toggle:after {
+         /* symbol for "opening" panels */
+         font-family: 'Glyphicons Halflings';  /* essential for enabling glyphicon */
+         content: "\e114";    /* adjust as needed, taken from bootstrap.css */
+         float: right;        /* adjust as needed */
+         color: grey;         /* adjust as needed */
+         }
+         .panel-heading .accordion-toggle.collapsed:after {
+         /* symbol for "collapsed" panels */
+         content: "\e080";    /* adjust as needed, taken from bootstrap.css */
+         }
+         .a {
+             color: #ffffff !important; 
+              text-decoration: none !important; 
+            
+         }
+      </style>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <!-- Icons.css -->
+      <link type="text/css" rel="stylesheet" href="../assets/icons/fuse-icon-font/style.css">
+      <!-- Animate.css -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/animate.css/animate.min.css">
+      <!-- PNotify -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/pnotify/dist/PNotifyBrightTheme.css">
+      <!-- Nvd3 - D3 Charts -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/nvd3/build/nv.d3.min.css" />
+      <!-- Perfect Scrollbar -->
+      <link type="text/css" rel="stylesheet" href="../assets/node_modules/perfect-scrollbar/css/perfect-scrollbar.css" />
+      <!-- Fuse Html -->
+      <link type="text/css" rel="stylesheet" href="../assets/fuse-html/fuse-html.min.css" />
+      <!-- Main CSS -->
+      <link type="text/css" rel="stylesheet" href="../assets/css/main.css">
+      <!-- / STYLESHEETS -->
+      <!-- JAVASCRIPT -->
+      <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+      <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+      <!-- jQuery -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <!-- <script type="text/javascript" src="../assets/node_modules/jquery/dist/jquery.min.js"></script> -->
+      <!-- Mobile Detect -->
+      <script type="text/javascript" src="../assets/node_modules/mobile-detect/mobile-detect.min.js"></script>
+      <!-- Perfect Scrollbar -->
+      <script type="text/javascript" src="../assets/node_modules/perfect-scrollbar/dist/perfect-scrollbar.min.js"></script>
+      <!-- Popper.js -->
+      <script type="text/javascript" src="../assets/node_modules/popper.js/dist/umd/popper.min.js"></script>
+      <!-- Bootstrap -->
+      <script type="text/javascript" src="../assets/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+      <!-- Nvd3 - D3 Charts -->
+      <script type="text/javascript" src="../assets/node_modules/d3/d3.min.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/nvd3/build/nv.d3.min.js"></script>
+      <!-- Data tables -->
+      <script type="text/javascript" src="../assets/node_modules/datatables.net/js/jquery.dataTables.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/datatables-responsive/js/dataTables.responsive.js"></script>
+      <!-- PNotify -->
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotify.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyStyleMaterial.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyButtons.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyCallbacks.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyMobile.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyHistory.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyDesktop.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyConfirm.js"></script>
+      <script type="text/javascript" src="../assets/node_modules/pnotify/dist/iife/PNotifyReference.js"></script>
+      <!-- Fuse Html -->
+      <script type="text/javascript" src="../assets/fuse-html/fuse-html.min.js"></script>
+      <!-- Main JS -->
+      <script type="text/javascript" src="../assets/js/main.js"></script>
+      <script type="text/javascript">
+         $( document ).ready(function() {
+             console.log();
+             $('.nav-link').bind('click',function(aa){
+                 // $('.nav-link')
+                 $('.nav-link').removeClass('active');
+                 $(this).addClass('active');
+                 console.log(this);
+             });
+         });
+      </script>
+      <script type="text/javascript">
+         $(function () {
+         
+             var active = true;
+         
+             $('#collapse-init').click(function () {
+                 if (active) {
+                     active = false;
+                      console.log("active",active);
+                     $('.panel-collapse').collapse('show');
+                     console.log($('.panel-collapse').collapse('show'));
+                     $('.panel-title').attr('data-toggle', '');
+                     $(this).text('Collapse All');
+                 } else {
+                     active = true;
+                     console.log("active",active);
+         
+                     $('.panel-collapse').collapse('hide');
+                     console.log( $('.panel-collapse').collapse('hide'));
+         
+         
+                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $(this).text('Expand All');
+                 }
+             });
+             
+             $('#accordion').on('show.bs.collapse', function () {
+                 if (active) $('#accordion .in').collapse('hide');
+             });
+         
+         });
+      </script>
+       <script type="text/javascript">
+         $(function () {
+             var active = true;
+             $('#createSupplier').click(function () {
+                 if (active) {
+                     active = false;
+                      console.log("active",active);
+                     $('.panel-collapse1').collapse('show');
+                     console.log($('.panel-collapse1').collapse('show'));
+                     $('.panel-title').attr('data-toggle', '');
+                     $(this).text('Create Supplier');
+                 } else {
+                     active = true;
+                     console.log("active",active);
+         
+                     $('.panel-collapse1').collapse('hide');
+                     console.log( $('.panel-collapse1').collapse('hide'));
+         
+         
+                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $(this).text('Create Supplier');
+                 }
+             });
+             
+             $('#accordion').on('show.bs.collapse', function () {
+                 if (active) $('#accordion .in').collapse('hide');
+             });
+         
+         });
+      </script>
+       <script type="text/javascript">
+         $(function () {
+             var active = true;
+             $('#viewSupplier').click(function () {
+                 if (active) {
+                     active = false;
+                      console.log("active",active);
+                     $('.panel-collapse2').collapse('show');
+                     console.log($('.panel-collapse2').collapse('show'));
+                     $('.panel-title').attr('data-toggle', '');
+                     $(this).text('View Supplier');
+                 } else {
+                     active = true;
+                     console.log("active",active);
+         
+                     $('.panel-collapse2').collapse('hide');
+                     console.log( $('.panel-collapse2').collapse('hide'));
+         
+         
+                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $(this).text('View Supplier');
+                 }
+             });
+             
+             $('#accordion').on('show.bs.collapse', function () {
+                 if (active) $('#accordion .in').collapse('hide');
+             });
+         
+         });
+      </script>
+       <script type="text/javascript">
+         $(function () {
+             var active = true;
+             $('#editSupplier').click(function () {
+                 if (active) {
+                     active = false;
+                      console.log("active",active);
+                     $('.panel-collapse3').collapse('show');
+                     console.log($('.panel-collapse3').collapse('show'));
+                     $('.panel-title').attr('data-toggle', '');
+                     $(this).text('Edit Supplier');
+                 } else {
+                     active = true;
+                     console.log("active",active);
+         
+                     $('.panel-collapse3').collapse('hide');
+                     console.log( $('.panel-collapse3').collapse('hide'));
+         
+         
+                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $(this).text('Edit Supplier');
+                 }
+             });
+             
+             $('#accordion').on('show.bs.collapse', function () {
+                 if (active) $('#accordion .in').collapse('hide');
+             });
+         
+         });
+      </script>
+       <script type="text/javascript">
+         $(function () {
+             var active = true;
+             $('#listSupplier').click(function () {
+                 if (active) {
+                     active = false;
+                      console.log("active",active);
+                     $('.panel-collapse4').collapse('show');
+                     console.log($('.panel-collapse4').collapse('show'));
+                     $('.panel-title').attr('data-toggle', '');
+                     $(this).text('List of Supplier');
+                 } else {
+                     active = true;
+                     console.log("active",active);
+         
+                     $('.panel-collapse4').collapse('hide');
+                     console.log( $('.panel-collapse4').collapse('hide'));
+         
+         
+                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $(this).text('List of Supplier');
+                 }
+             });
+             
+             $('#accordion').on('show.bs.collapse', function () {
+                 if (active) $('#accordion .in').collapse('hide');
+             });
+         
+         });
+      </script>
+      <!-- / JAVASCRIPT -->
+   </head>
+   <body class="layout layout-vertical layout-left-navigation layout-above-toolbar layout-above-footer body_font">
+      <main>
+         <div id="wrapper">
+ <aside id="aside" class="aside aside-left" data-fuse-bar="aside" data-fuse-bar-media-step="md" data-fuse-bar-position="left">
+            <div class="aside-content bg-primary-700 text-auto">
+               <div class="aside-toolbar">
+                  <div class="logo">
+                     <img src="../assets/images/logos/medtrack_logo.png" width="32" height="32" class="logo-icon"></img>
+                     <span class="logo-text">MEDTRACK</span>
+                  </div>
+                  <button id="toggle-fold-aside-button" type="button" class="btn btn-icon d-none d-lg-block" data-fuse-aside-toggle-fold>
+                  <i class="icon icon-backburger"></i>
+                  </button>
+               </div>
+               <ul class="nav flex-column custom-scrollbar" id="sidenav" data-children=".nav-item">
+                  <li class="nav-item" role="tab" id="heading-dashboards">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-dashboards" aria-expanded="false" aria-controls="collapse-dashboards" data-parent="#sidenav">
+                     <i class="icon s-4 icon-account-box"></i>
+                     <span><a href="user.html" class="a"> Users</a></span></span>
+                     
+                     <ul id="collapse-dashboards" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="user.html#heading-create-user" id="createUser" data-url="heading-create-user">
+                           <span>Create User</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="user.html#heading-user-detail" data-url="heading-user-detail" id="viewUser" >
+                           <span>View User </span>
+                           </a>
+                        </li>
+                        <li class="nav-item "  >
+                           <a class="nav-link ripple c"  click="handleclick('c')" href="user.html#heading-edit-user" id="editUser">
+                           <span>Edit User </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple d"   click="handleclick('d')" href="user.html#heading-user-list" id="listUser" >
+                           <span>List of Users</span>
+                           </a>
+                        </li>
+                     </ul>
+                  </li>
+                  <li class="nav-item" role="tab" id="heading-part">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-part" href="part.html" aria-expanded="false" aria-controls="collapse-part" data-parent="#sidenav">
+                     <i class="icon s-4 icon-clipboard-text"></i>
+                     <span><a href="part.html" class="a"> Part</a></span></span>
+                     
+                     <ul id="collapse-part" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="part.html#heading-create-part"  data-url="heading-create-part">
+                           <span>Create Part</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="part.html#heading-part-detail" data-url="heading-part-detail" >
+                           <span>View Part </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="part.html#heading-edit-part" data-url="heading-part-detail" >
+                           <span>Edit Part </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="part.html#heading-part-list" data-url="heading-part-detail" >
+                           <span>List of Part </span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li> 
+                   <li class="nav-item" role="tab" id="heading-document">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-document" href="document.html" aria-expanded="false" aria-controls="collapse-document" data-parent="#sidenav">
+                     <i class="icon s-4 icon-clipboard-text"></i>
+                     <span><a href="document.html" class="a"> Document</a></span></span>
+                     
+                     <ul id="collapse-document" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="document.html#heading-create-document"  data-url="heading-create-document">
+                           <span>Create Document</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="document.html#heading-document-detail" data-url="heading-document-detail" >
+                           <span>View Document </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="document.html#heading-edit-document" data-url="heading-user-detail" >
+                           <span>Edit Document </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="document.html#heading-document-list" data-url="heading-document-detail" >
+                           <span>List of Document </span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                    <li class="nav-item" role="tab" id="heading-department">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-department" href="department.html" aria-expanded="false" aria-controls="collapse-department" data-parent="#sidenav">
+                     <i class="icon s-4 icon-layers"></i>
+                     <span><a href="department.html" class="a"> Department</a></span></span>
+                     
+                     <ul id="collapse-department" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="department.html#heading-create-department"  data-url="heading-create-user">
+                           <span>Create Department</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="department.html#heading-department-detail" data-url="heading-user-detail" >
+                           <span>View Department </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="department.html#heading-edit-department" data-url="heading-user-detail" >
+                           <span>Edit Department </span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="department.html#heading-department-list" data-url="heading-user-detail" >
+                           <span>List of Department </span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                  <li class="nav-item" role="tab" id="heading-tag">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-tag" href="tag.html" aria-expanded="false" aria-controls="collapse-tag" data-parent="#sidenav">
+                     <i class="icon s-4 icon-tag"></i>
+                     <span><a href="tag.html" class="a"> Tag</a></span></span>
+                  
+                     <ul id="collapse-tag" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="tag.html#heading-create-tag"  data-url="heading-create-user">
+                           <span>Create Tag</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="tag.html#heading-tag-detail" data-url="heading-user-detail" >
+                           <span>View Tag</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="tag.html#heading-edit-tag" data-url="heading-user-detail" >
+                           <span>Edit Tag</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="tag.html#heading-tag-list" data-url="heading-user-detail" >
+                           <span>List of Tag</span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                    <li class="nav-item" role="tab" id="heading-supplier">
+                     <span class="nav-link ripple active with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-supplier" href="supplier.html" aria-expanded="false" aria-controls="collapse-supplier" data-parent="#sidenav">
+                     <i class="icon s-4 icon-account-outline"></i>
+                     <span><a href="supplier.html" class="a"> Supplier</a></span></span>
+                  
+                     <ul id="collapse-supplier" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="supplier.html#heading-create-supplier"  data-url="heading-create-user" id="createSupplier">
+                           <span>Create Supplier</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="supplier.html#heading-supplier-detail" data-url="heading-user-detail" id="viewSupplier" >
+                           <span>View Supplier</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="supplier.html#heading-edit-supplier" data-url="heading-user-detail" id="editSupplier">
+                           <span>Edit Supplier</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="supplier.html#heading-supplier-list" data-url="heading-supplier-detail" id="listSupplier">
+                           <span>List of Supplier</span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                  <li class="nav-item" role="tab" id="heading-bom">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-bom" href="bom.html" aria-expanded="false" aria-controls="collapse-bom" data-parent="#sidenav">
+                     <i class="icon s-4 icon-clipboard-text"></i>
+                     <span><a href="bom.html" class="a"> BOM</a></span></span>
+                  
+                     <ul id="collapse-bom" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="bom.html#heading-create-bom"  data-url="heading-create-user">
+                           <span>Create BOM</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="bom.html#heading-bom-detail" data-url="heading-user-detail" >
+                           <span>View BOM</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="bom.html#heading-edit-bom" data-url="heading-user-detail" >
+                           <span>Edit BOM</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="bom.html#heading-bom-list" data-url="heading-user-detail" >
+                           <span>List of BOM</span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                  <li class="nav-item" role="tab" id="heading-mapping">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-mapping" href="mapping.html" aria-expanded="false" aria-controls="collapse-mapping" data-parent="#sidenav">
+                      <i class="icon s-4 icon-swap-horizontal"></i>
+                     
+                     <span><a href="mapping.html" class="a"> Mapping</a></span></span>
+                  
+                     <ul id="collapse-mapping" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="mapping.html#heading-create-mapping"  data-url="heading-create-user">
+                           <span>Create Mapping</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="mapping.html#heading-mapping-detail" data-url="heading-user-detail" >
+                           <span>View Mapping</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="mapping.html#heading-edit-mapping" data-url="heading-user-detail" >
+                           <span>Edit Mapping</span>
+                           </a>
+                        </li>
+
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="mapping.html#heading-mapping-list" data-url="heading-user-detail" >
+                           <span>List of Mapping</span>
+                           </a>
+                        </li>
+                        
+                     </ul>
+                  </li>
+                    
+                 <li class="nav-item" role="tab" id="heading-eco">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-eco" href="eco.html" aria-expanded="false" aria-controls="collapse-eco" data-parent="#sidenav">
+                      <i class="icon s-4 icon-more"></i>
+                     
+                     <span><a href="eco.html" class="a"> ECO</a></span></span>
+                  
+                     <ul id="collapse-eco" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="eco.html#heading-create-eco"  data-url="heading-create-eco">
+                           <span>Create ECO</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="eco.html#heading-eco-detail" data-url="heading-eco-detail" >
+                           <span>View ECO</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="eco.html#heading-edit-eco" data-url="heading-edit-eco" >
+                           <span>Edit ECO</span>
+                           </a>
+                        </li>
+
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('d')" href="eco.html#heading-eco-list" data-url="heading-eco-list" >
+                           <span>List of ECO</span>
+                           </a>
+                        </li>
+                        <li class="nav-item " data-target="#collapseOne">
+                           <a class="nav-link ripple a active" click="handleclick('a')" href="eco.html#heading-ab-dca-eco"  data-url="heading-create-eco">
+                           <span>Approved by DCA.</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="eco.html#heading-aba-eco" data-url="heading-eco-detail" >
+                           <span>Approved by Approvers.</span>
+                           </a>
+                        </li>
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('c')" href="eco.html#heading-rb-dca-eco" data-url="heading-edit-eco" >
+                           <span>ECO Released by DCA.</span>
+                           </a>
+                        </li>
+
+                       
+                        
+                     </ul>
+                  </li>
+                   <li class="nav-item" role="tab" id="heading-whereUsed">
+                     <span class="nav-link ripple with-arrow fuse-ripple-ready collapsed" data-toggle="collapse" data-target="#collapse-whereUsed" href="whereUsed.html" aria-expanded="false" aria-controls="collapse-whereUsed" data-parent="#sidenav">
+                      <i class="icon s-4 icon-help-box"></i>
+                     <span><a href="whereUsed.html" class="a"> Where Used</a></span></span>
+                  
+                     <ul id="collapse-whereUsed" class="collapse" role="tabpanel" data-children=".nav-item" style="">
+                        
+                        <li class="nav-item ">
+                           <a class="nav-link ripple b" click="handleclick('b')" href="whereUsed.html#heading-whereUsed-detail" data-url="heading-whereUsed-detail" >
+                           <span>View Where Used</span>
+                           </a>
+                        </li>
+                        
+                        
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+         </aside>
+         <div class="content-wrapper ">
+         <div class="content custom-scrollbar">
+         <div class="doc simple-table-doc page-layout simple full-width">
+             <!-- HEADER -->
+            <div class="page-header bg-primary text-auto p-6 Sep" style="margin-top: 0px">
+               <!-- HEADER CONTENT-->
+               <div class="header-content d-flex flex-column justify-content-between">
+                  <!-- HEADER TOP -->
+                  <div class="header-top d-flex flex-column flex-sm-row align-items-center  justify-content-center justify-content-sm-between">
+                     <div class="logo row align-items-center no-gutters mb-4 mb-sm-0">
+                        <i class="  icon-account-outline mr-4" style="margin-top: 8px;"></i>
+                        <span class="logo-text  mr-4 h4">Supplier</span>
+                     </div>
+                     <!-- TOOLBAR -->
+                     <div class="toolbar row no-gutters align-items-center">
+                     </div>
+                     <!-- / TOOLBAR -->
+                  </div>
+                  <!-- / HEADER TOP -->
+               </div>
+            </div>
+            <!-- <div class="page-header bg-primary text-auto p-6 row no-gutters align-items-center justify-content-between" style="margin-top: 0px;" >
+               <h1 class="doc-title h4" id="content" style="padding-right: 867px;"><i class="  icon-account mr-4"></i>Users
+               </h1>
+               </div> -->
+            <!-- / HEADER -->
+            <!-- /INTRO -->
+            <!-- INTRO -->
+           
+            <!-- /INTRO -->
+            <!-- CREATE USER -->
+            <div class="page-content p-12 panel-title" id="heading-create-user" style="margin-top: 45px;">
+             <div class="widget-content ">
+               <p style="line-height: normal;">The module is available to the creator(s) and document control admin.</p>
+
+            </div>
+               <div class="panel-body control-accordion">
+                  <button id="collapse-init" class="btn btn-primary collapse_expand " style="background-color:#f57c00; float: right;     margin-top: -25px;">
+                  Expand All
+                  </button>
+                  <br/><br/>
+                  <div class="panel-group" id="accordion">
+                     <!-- First Panel -->
+                     <div class="panel panel-default " >
+                        <div class="panel-heading widget-content with-arrow" style="background-color: #dbd4d4;">
+                           <h6 class="panel-title widget-content accordion-toggle " id="heading-create-supplier" 
+                              data-toggle="collapse" 
+                              data-target="#collapseOne">
+                              Create Supplier
+                           </h6>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse panel-collapse1 collapse">
+                           <div class="example col-12 ">
+                              <span style="margin-top: 25px; ">
+                              1.a The user navigates on 'supplier' -> 'New' to create a supplier, from the supplier list.
+                                </span>
+                              <div class="source-preview-wrapper image_shadow" >
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/create/newSupplier.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                              <span style="margin-top: 25px; "><p style="line-height: normal;">
+                             1.b  The user enters all mandatory fields and clicks on ‘Save’, ‘Standard Suppliers Private Limited’ saved with its description.</p>
+                            
+
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/create/saveSupplier.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                           <span style="margin-top: 25px; ">
+                           
+                              1.c The user clicks on ‘Edit’ button.
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/create/editButton.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                             <div class="example col-12 " >
+                              <span style="margin-top: 25px; "><p style="line-height: normal;">
+                           1.d In ‘Assign Parts’ tab, select part and types supplier part no, clicks on add  (‘+’) clicks ‘Save’. Parts are added with the supplier.</p> 
+
+
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/create/addPart.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- /First Panel -->
+                     <!-- Second Panel -->
+                     <div class="panel panel-default " >
+                        <div class="panel-heading widget-content" style="background-color: #dbd4d4;">
+                           <h4 class="panel-title accordion-toggle" id="heading-supplier-detail" 
+                              data-toggle="collapse" 
+                              data-target="#collapseTwo">
+                              View Supplier
+                           </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse panel-collapse2 collapse">
+                           <div class="example col-12 ">
+                              <span style="margin-top: 25px; "><p style="line-height: normal;">
+                              
+                              2 The system displays supplier ‘Description’, ‘Assign Parts’ with ‘Edit’ and ‘Back’ buttons.<br>
+2.a The user clicks on supplier name, the system moves to view supplier details page.
+</p> </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/detail/listDetail.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/detail/viewDescription.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="example col-12 " >
+                            
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/detail/viewAssignpart.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- /Second Panel -->
+                     <!-- Third Panel -->
+                     
+                     <div class="panel panel-default " >
+                        <div class="panel-heading widget-content with-arrow" style="background-color: #dbd4d4;">
+                           <h6 class="panel-title widget-content accordion-toggle " id="heading-edit-supplier" 
+                              data-toggle="collapse" 
+                              data-target="#collapseThird">
+                              Edit Supplier
+                           </h6>
+                        </div>
+                        <div id="collapseThird" class="panel-collapse panel-collapse3 collapse">
+                           <div class="example col-12 ">
+                              <span style="margin-top: 25px; ">
+                              3.a. Clicks on ‘Edit’. </span>
+                              <div class="source-preview-wrapper image_shadow" >
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/edit/editButton.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                              <span style="margin-top: 25px; "><p style="line-height: normal;">
+                            3.b The user can update the supplier description.For assign another part  selects part no, types supplier part no, clicks on add row (‘+’),clicks on ‘Save’. </p>
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/edit/editDesc.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="example col-12 " >
+                              
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/edit/editAssignpart.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                              <div class="example col-12 " >
+                              <span style="margin-top: 25px; "><p style="line-height: normal;">
+                          3.c The user can exclude an assigned part by clicks on the remove button and the system also updates part supplier description can be updated.</p>
+ 
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/edit/removePart.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- /Third Panel -->               
+                     <!-- Fourth Panel -->
+
+                     <div class="panel panel-default " >
+                        <div class="panel-heading widget-content with-arrow" style="background-color: #dbd4d4;">
+                           <h6 class="panel-title widget-content accordion-toggle " id="heading-supplier-list" 
+                              data-toggle="collapse" 
+                              data-target="#collapseForth">
+                              List of Supplier
+                           </h6>
+                        </div>
+                        <div id="collapseForth" class="panel-collapse panel-collapse4 collapse">
+                           
+                           <div class="example col-12 " >
+                              <span style="margin-top: 25px; "><p style="line-height: normal;">
+                              4.a The system displays searched list.</p>
+
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/list/searchSupplier.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                            <div class="example col-12 " >
+                              <span style="margin-top: 25px; ">
+                            4.b The user views supplier list with enable/ disable option.
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/list/disableSupplier.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                                <div class="example col-12 " >
+                              <span style="margin-top: 25px; ">
+                              4.c The user can sort supplier list on ‘Supplier name’, 'Is Approved’, 'Email ID', and 'Status’.
+                              </span>
+                              <div class="source-preview-wrapper image_shadow">
+                                 <div class="preview">
+                                    <div class="preview-elements">
+                                       <img src="../assets/images/module/supplier/list/sortSupplier.png" alt="image" style="max-width:100%;">
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                    
+                     <!-- /Fourth Panel -->
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div style="margin-left: 65px; margin-top: -65px;" >© 2018 lattice innovation</div>
+      </main>
+   </body>
+</html>
