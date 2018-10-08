@@ -129,26 +129,19 @@
       </script>
 
 
-      <script type="text/javascript">
+        <script type="text/javascript">
          $(function () {
+         
              var active = true;
-             $('#accordion').click(function () {
+             $('#collapse-init').click(function () {
                  if (active) {
                      active = false;
                       console.log("active",active);
                      $('.panel-collapse').collapse('show');
-                     console.log($('.panel-collapse').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
                      $(this).text('Collapse All');
                  } else {
                      active = true;
-                     console.log("active",active);
-         
                      $('.panel-collapse').collapse('hide');
-                     console.log( $('.panel-collapse').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('Expand All');
                  }
              });
@@ -166,21 +159,21 @@
                  if (active) {
 
                      active = false;
-                      console.log("active",active);
+                      // console.log("active",active);
                      $('.panel-collapse1').collapse('show');
-                     console.log($('.panel-collapse1').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     // console.log($('.panel-collapse1').collapse('show'));
+                     // $('.panel-title').attr('data-toggle', '');
                      $(this).text('Create User');
                  } 
                  else {
                      active = true;
-                     console.log("active",active);
+                     // console.log("active",active);
          
                      $('.panel-collapse1').collapse('hide');
-                     console.log( $('.panel-collapse1').collapse('hide'));
+                     // console.log( $('.panel-collapse1').collapse('hide'));
          
          
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     // $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('Create User');
                  }
              });
@@ -197,20 +190,20 @@
              $('#viewUser').click(function () {
                  if (active) {
                      active = false;
-                      console.log("active",active);
+                      // console.log("active",active);
                      $('.panel-collapse2').collapse('show');
-                     console.log($('.panel-collapse2').collapse('show'));
+                     // console.log($('.panel-collapse2').collapse('show'));
                      $('.panel-title').attr('data-toggle', '');
                      $(this).text('View User');
                  } else {
                      active = true;
-                     console.log("active",active);
+                     // console.log("active",active);
          
                      $('.panel-collapse2').collapse('hide');
-                     console.log( $('.panel-collapse2').collapse('hide'));
+                     // console.log( $('.panel-collapse2').collapse('hide'));
          
          
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     // $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('View User');
                  }
              });
@@ -227,20 +220,20 @@
              $('#editUser').click(function () {
                  if (active) {
                      active = false;
-                      console.log("active",active);
+                      // console.log("active",active);
                      $('.panel-collapse3').collapse('show');
-                     console.log($('.panel-collapse3').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     // console.log($('.panel-collapse3').collapse('show'));
+                     // $('.panel-title').attr('data-toggle', '');
                      $(this).text('Edit User');
                  } else {
                      active = true;
-                     console.log("active",active);
+                     // console.log("active",active);
          
                      $('.panel-collapse3').collapse('hide');
-                     console.log( $('.panel-collapse3').collapse('hide'));
+                     // console.log( $('.panel-collapse3').collapse('hide'));
          
          
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     // $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('Edit User');
                  }
              });
@@ -257,20 +250,20 @@
              $('#listUser').click(function () {
                  if (active) {
                      active = false;
-                      console.log("active",active);
+                      // console.log("active",active);
                      $('.panel-collapse4').collapse('show');
-                     console.log($('.panel-collapse4').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     // console.log($('.panel-colla/pse4').collapse('show'));
+                     // $('.panel-title').attr('data-toggle', '');
                      $(this).text('List of User');
                  } else {
                      active = true;
-                     console.log("active",active);
+                     // console.log("active",active);
          
                      $('.panel-collapse4').collapse('hide');
-                     console.log( $('.panel-collapse4').collapse('hide'));
+                     // console.log( $('.panel-collapse4').collapse('hide'));
          
          
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     // $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('List of User');
                  }
              });
@@ -631,7 +624,7 @@
                The module is only available to document control admin (DCA). </p>
                </div>
                <div class="panel-body control-accordion">
-                  <button id="accordion" class="btn btn-primary collapse_expand " style="background-color: #f57c00; float: right;     margin-top: -25px;">
+                  <button id="collapse-init" class="btn btn-primary collapse_expand " style="background-color: #f57c00; float: right;     margin-top: -25px;">
                   Expand All
                   </button>
                   <br/><br/>
@@ -639,7 +632,7 @@
                      <!-- First Panel -->
                      <div class="panel panel-default " >
                         <div class="panel-heading widget-content with-arrow" style="background-color: #dbd4d4;">
-                           <h6 class="panel-title widget-content accordion-toggle" href="#createUser" id="heading-create-user" 
+                           <h6 class="panel-title widget-content accordion-toggle" id="heading-create-user" 
                               data-toggle="collapse" 
                               data-target="#collapseOne" >
                               Create User
@@ -711,7 +704,7 @@
                      <!-- Second Panel -->
                      <div class="panel panel-default " >
                         <div class="panel-heading widget-content" style="background-color: #dbd4d4;">
-                           <h4 class="panel-title accordion-toggle" href="viewUser" id="heading-user-detail" 
+                           <h4 class="panel-title accordion-toggle"  id="heading-user-detail" 
                               data-toggle="collapse" 
                               data-target="#collapseTwo">
                               View User

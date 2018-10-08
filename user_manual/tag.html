@@ -141,18 +141,10 @@
                      active = false;
                       console.log("active",active);
                      $('.panel-collapse').collapse('show');
-                     console.log($('.panel-collapse').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
                      $(this).text('Collapse All');
                  } else {
-                     active = true;
-                     console.log("active",active);
-         
+                     active = true;         
                      $('.panel-collapse').collapse('hide');
-                     console.log( $('.panel-collapse').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('Expand All');
                  }
              });
@@ -168,21 +160,14 @@
              var active = true;
              $('#createTag').click(function () {
                  if (active) {
-                     active = false;
-                      console.log("active",active);
-                     $('.panel-collapse1').collapse('show');
-                     console.log($('.panel-collapse1').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     active = false;                     
+                     $('.panel-collapse1').collapse('show');                     
+                     // $('.panel-title').attr('data-toggle', '');
                      $(this).text('Create Tag');
                  } else {
-                     active = true;
-                     console.log("active",active);
+                     active = true;              
          
-                     $('.panel-collapse1').collapse('hide');
-                     console.log( $('.panel-collapse1').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $('.panel-collapse1').collapse('hide');                     
                      $(this).text('Create Tag');
                  }
              });
@@ -199,20 +184,13 @@
              $('#viewTag').click(function () {
                  if (active) {
                      active = false;
-                      console.log("active",active);
                      $('.panel-collapse2').collapse('show');
-                     console.log($('.panel-collapse2').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
-                     $(this).text('View Tag');
+                    $(this).text('View Tag');
                  } else {
                      active = true;
                      console.log("active",active);
          
                      $('.panel-collapse2').collapse('hide');
-                     console.log( $('.panel-collapse2').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('View Tag');
                  }
              });
@@ -228,21 +206,12 @@
              var active = true;
              $('#editTag').click(function () {
                  if (active) {
-                     active = false;
-                      console.log("active",active);
-                     $('.panel-collapse3').collapse('show');
-                     console.log($('.panel-collapse3').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     active = false;                    
+                     $('.panel-collapse3').collapse('show');                     
                      $(this).text('Edit Tag');
                  } else {
-                     active = true;
-                     console.log("active",active);
-         
-                     $('.panel-collapse3').collapse('hide');
-                     console.log( $('.panel-collapse3').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     active = true;                    
+                     $('.panel-collapse3').collapse('hide');                    
                      $(this).text('Edit Tag');
                  }
              });
@@ -259,20 +228,12 @@
              $('#listTag').click(function () {
                  if (active) {
                      active = false;
-                      console.log("active",active);
-                     $('.panel-collapse4').collapse('show');
-                     console.log($('.panel-collapse4').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     
+                     $('.panel-collapse4').collapse('show');                   
                      $(this).text('List of Tag');
                  } else {
-                     active = true;
-                     console.log("active",active);
-         
-                     $('.panel-collapse4').collapse('hide');
-                     console.log( $('.panel-collapse4').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     active = true;         
+                     $('.panel-collapse4').collapse('hide');                           
                      $(this).text('List of Tag');
                  }
              });

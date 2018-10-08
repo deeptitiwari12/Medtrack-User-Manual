@@ -131,27 +131,16 @@
          });
       </script>
       <script type="text/javascript">
-         $(function () {
-         
-             var active = true;
-         
+         $(function () {         
+             var active = true;         
              $('#collapse-init').click(function () {
                  if (active) {
-                     active = false;
-                      console.log("active",active);
-                     $('.panel-collapse').collapse('show');
-                     console.log($('.panel-collapse').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     active = false;                     
+                     $('.panel-collapse').collapse('show');                    
                      $(this).text('Collapse All');
                  } else {
                      active = true;
-                     console.log("active",active);
-         
-                     $('.panel-collapse').collapse('hide');
-                     console.log( $('.panel-collapse').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $('.panel-collapse').collapse('hide');         
                      $(this).text('Expand All');
                  }
              });
@@ -169,19 +158,12 @@
                  if (active) {
                      active = false;
                       console.log("active",active);
-                     $('.panel-collapse1').collapse('show');
-                     console.log($('.panel-collapse1').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     $('.panel-collapse1').collapse('show');                   
                      $(this).text('Create BOM');
                  } else {
                      active = true;
                      console.log("active",active);
-         
-                     $('.panel-collapse1').collapse('hide');
-                     console.log( $('.panel-collapse1').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     $('.panel-collapse1').collapse('hide');             
                      $(this).text('Create BOM');
                  }
              });
@@ -197,21 +179,12 @@
              var active = true;
              $('#viewBom').click(function () {
                  if (active) {
-                     active = false;
-                      console.log("active",active);
-                     $('.panel-collapse2').collapse('show');
-                     console.log($('.panel-collapse2').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     active = false;                     
+                     $('.panel-collapse2').collapse('show');                   
                      $(this).text('View BOM');
                  } else {
-                     active = true;
-                     console.log("active",active);
-         
+                     active = true;                   
                      $('.panel-collapse1').collapse('hide');
-                     console.log( $('.panel-collapse2').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('View BOM');
                  }
              });
@@ -228,20 +201,20 @@
              $('#editBom').click(function () {
                  if (active) {
                      active = false;
-                      console.log("active",active);
+                      // console.log("active",active);
                      $('.panel-collapse3').collapse('show');
-                     console.log($('.panel-collapse3').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     // console.log($('.panel-collapse3').collapse('show'));
+                     // $('.panel-title').attr('data-toggle', '');
                      $(this).text('Edit BOM');
                  } else {
                      active = true;
                      console.log("active",active);
          
                      $('.panel-collapse3').collapse('hide');
-                     console.log( $('.panel-collapse3').collapse('hide'));
+                     // console.log( $('.panel-collapse3').collapse('hide'));
          
          
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     // $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('Edit BOM');
                  }
              });
@@ -258,20 +231,20 @@
              $('#listBom').click(function () {
                  if (active) {
                      active = false;
-                      console.log("active",active);
+                      // console.log("active",active);
                      $('.panel-collapse4').collapse('show');
                      console.log($('.panel-collapse4').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
+                     // $('.panel-title').attr('data-toggle', '');
                      $(this).text('List of BOM');
                  } else {
                      active = true;
-                     console.log("active",active);
+                     // console.log("active",active);
          
                      $('.panel-collapse4').collapse('hide');
-                     console.log( $('.panel-collapse4').collapse('hide'));
+                     // console.log( $('.panel-collapse4').collapse('hide'));
          
          
-                     $('.panel-title').attr('data-toggle', 'collapse');
+                     // $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('List of BOM');
                  }
              });

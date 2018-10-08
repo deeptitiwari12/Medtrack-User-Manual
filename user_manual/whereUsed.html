@@ -134,24 +134,15 @@
          $(function () {
          
              var active = true;
-         
              $('#collapse-init').click(function () {
                  if (active) {
                      active = false;
                       console.log("active",active);
                      $('.panel-collapse').collapse('show');
-                     console.log($('.panel-collapse').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
                      $(this).text('Collapse All');
                  } else {
                      active = true;
-                     console.log("active",active);
-         
                      $('.panel-collapse').collapse('hide');
-                     console.log( $('.panel-collapse').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('Expand All');
                  }
              });
@@ -166,24 +157,15 @@
          $(function () {
          
              var active = true;
-         
              $('#whereUsed').click(function () {
                  if (active) {
                      active = false;
                       console.log("active",active);
                      $('.panel-collapse1').collapse('show');
-                     console.log($('.panel-collapse1').collapse('show'));
-                     $('.panel-title').attr('data-toggle', '');
                      $(this).text('View Where Used');
                  } else {
                      active = true;
-                     console.log("active",active);
-         
                      $('.panel-collapse1').collapse('hide');
-                     console.log( $('.panel-collapse1').collapse('hide'));
-         
-         
-                     $('.panel-title').attr('data-toggle', 'collapse');
                      $(this).text('View Where Used');
                  }
              });
